@@ -2,6 +2,8 @@
 
 namespace App\ArgumentResolver;
 
+use App\Dto\DayRatesRequest;
+use App\Dto\LastDayRatesRequest;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ValueResolverInterface;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
@@ -10,13 +12,17 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class ValidatedDtoResolver implements ValueResolverInterface
 {
-    public function __construct(private ValidatorInterface $validator) {}
+    public function __construct(private readonly ValidatorInterface $validator) {}
 
     public function resolve(Request $request, ArgumentMetadata $argument): iterable
     {
         $dtoClass = $argument->getType();
 
         if (!$dtoClass || !class_exists($dtoClass)) {
+            return [];
+        }
+
+        if ($dtoClass !== LastDayRatesRequest::class || $dtoClass !== DayRatesRequest::class) {
             return [];
         }
 

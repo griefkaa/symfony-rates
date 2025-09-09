@@ -9,7 +9,6 @@ use App\Dto\LastDayRatesRequest;
 use App\Service\RateService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class RatesController extends AbstractController
@@ -24,11 +23,5 @@ class RatesController extends AbstractController
     public function byChosenDay(DayRatesRequest $dto, RateService $rateService): JsonResponse
     {
         return $this->json($rateService->getRatesByDay($dto->pair, $dto->date));
-    }
-
-    #[Route('/test', name: 'test_nginx')]
-    public function index(): Response
-    {
-        return new Response('<h1>✅ Nginx + Symfony працює!</h1>');
     }
 }

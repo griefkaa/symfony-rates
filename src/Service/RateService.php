@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Repository\RateRepository;
+use DateTimeImmutable;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Symfony\Contracts\Cache\CacheInterface;
@@ -17,13 +18,13 @@ class RateService implements LoggerAwareInterface
     public function __construct(
         private readonly RateRepository $rateRepository,
         private readonly CacheInterface $cache,
-    ){
+    ) {
     }
 
     public function getRatesByDay(string $pair, ?string $date = null): array
     {
         try {
-            $date = new \DateTimeImmutable();
+            $date = $date ? new DateTimeImmutable($date) : new DateTimeImmutable();
 
             $cacheKey = sprintf("rates_day_%s_%s", str_replace('/', '_', $pair), $date->format('Y-m-d'));
 

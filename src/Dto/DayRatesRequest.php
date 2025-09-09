@@ -11,8 +11,8 @@ class DayRatesRequest
     public function __construct(
         #[Assert\NotBlank(message: "Parameter 'pair' is required")]
         #[Assert\Choice(
-            choices: ["EUR/BTC", "EUR/ETH", "EUR/LTC"],
-            message: "Invalid pair. Allowed values: EUR/BTC, EUR/ETH, EUR/LTC"
+            choices: ["EUR/BTC", "EUR/ETH", "EUR/LTC", "BTC/USDT"],
+            message: "Invalid pair. Allowed values: EUR/BTC, EUR/ETH, EUR/LTC, BTC/USDT"
         )]
         public readonly ?string $pair,
 
