@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ORMBundle\Entity\Traits;
+namespace App\ORM;
 
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;

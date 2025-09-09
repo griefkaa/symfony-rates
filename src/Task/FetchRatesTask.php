@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Scheduler;
+namespace App\Task;
 
 use App\Entity\Rate;
 use App\Service\BinanceService;
@@ -15,9 +15,7 @@ class FetchRatesTask implements LoggerAwareInterface
     use LoggerAwareTrait;
 
     private const PAIRS = [
-        'EURBTC' => 'EUR/BTC',
-        'EURETH' => 'EUR/ETH',
-        'EURLTC' => 'EUR/LTC',
+        'BTCUSDT' => 'BTC/USDT',
     ];
 
     public function __construct(

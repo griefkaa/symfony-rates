@@ -14,10 +14,6 @@ class LastDayRatesRequest
             choices: ["EUR/BTC", "EUR/ETH", "EUR/LTC"],
             message: "Invalid pair. Allowed values: EUR/BTC, EUR/ETH, EUR/LTC"
         )]
-        public readonly ?string $pair,
-//
-//        #[Assert\NotBlank(message: "Parameter 'date' is required")]
-//        #[Assert\Date(message: "Parameter 'date' must be in format YYYY-MM-DD")]
-//        public readonly ?string $date,
+        public readonly string $pair,
     ) {}
 }
