@@ -6,7 +6,7 @@ namespace App\Dto;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-class LastDayRatesRequest
+class LastDayRatesRequest implements RequestInterface
 {
     public function __construct(
         #[Assert\NotBlank(message: "Parameter 'pair' is required")]

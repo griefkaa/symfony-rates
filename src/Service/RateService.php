@@ -28,6 +28,7 @@ class RateService implements LoggerAwareInterface
 
             $cacheKey = sprintf("rates_day_%s_%s", str_replace('/', '_', $pair), $date->format('Y-m-d'));
 
+            //todo: cache move to service
             return $this->cache->get($cacheKey, function (ItemInterface $item) use ($pair, $date) {
                 $item->expiresAfter(300);
 

@@ -11,12 +11,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 #[AsCommand(name: 'app:fetch-rates')]
 class FetchRatesCommand extends Command
 {
-    private FetchRatesTask $task;
 
-    public function __construct(FetchRatesTask $task)
+    public function __construct(private readonly FetchRatesTask $task)
     {
         parent::__construct();
-        $this->task = $task;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

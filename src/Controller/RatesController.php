@@ -13,15 +13,20 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class RatesController extends AbstractController
 {
+    public function __construct(
+        private readonly RateService $rateService
+    ) {
+    }
+
     #[Route('/api/rates/last-24h', name: 'rates_last_24h', methods: ['GET'])]
-    public function byLastDay(LastDayRatesRequest $dto, RateService $rateService): JsonResponse
+    public function byLastDay(LastDayRatesRequest $dto): JsonResponse
     {
-        return $this->json($rateService->getRatesByDay($dto->pair));
+        return $this->json($this->rateService->getRatesByDay($dto->pair));
     }
 
     #[Route('/api/rates/day', name: 'api_rates_day', methods: ['GET'])]
-    public function byChosenDay(DayRatesRequest $dto, RateService $rateService): JsonResponse
+    public function byChosenDay(DayRatesRequest $dto,): JsonResponse
     {
-        return $this->json($rateService->getRatesByDay($dto->pair, $dto->date));
+        return $this->json($this->rateService->getRatesByDay($dto->pair, $dto->date));
     }
 }
